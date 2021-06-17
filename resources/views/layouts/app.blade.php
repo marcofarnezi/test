@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -38,6 +39,10 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                           <a class="nav-link" href="#" id="cartLink">Cart</a>
+                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -80,4 +85,27 @@
         </main>
     </div>
 </body>
+<script>
+    function getCookie(name) {
+        let cookie = document.cookie
+        let cookieReturn = '';
+        cookie.split(';').map(function (item) {
+           let cookieValue = item.split('=')
+           if (cookieValue[0] === name) {
+               cookieReturn = cookieValue[1];
+           }
+        })
+        return cookieReturn
+    }
+    function removeCookie(name) {
+        document.cookie = name+'=; Max-Age=-99999999;';
+    }
+    $(document).ready(function() {
+
+        let orderId = getCookie('orderId')
+        if (orderId !== '') {
+            $("#cartLink").attr('href', '/order/'+orderId);
+        }
+    })
+</script>
 </html>

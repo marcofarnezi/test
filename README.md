@@ -16,3 +16,9 @@ Fifteen minutes after checkout, a user should receive a discount code of € 5,-
 
 # Out-of-scope
 The UI doesn’t have to be pretty. Payments in this application are based on invoices. Invoices are out of scope :-)
+
+#Command to create data
+- php artisan make:product
+- php artisan make:stock
+- php artisan make:coupon
+- php artisan make:campaign

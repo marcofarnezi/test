@@ -1,0 +1,31 @@
+App\Domain\Model\Product:
+  attributes:
+    id:
+      groups: ['productData', 'productDetailData']
+    title:
+      groups: ['productData', 'productDetailData']
+    price:
+      groups: ['productData', 'productDetailData']
+    description:
+      groups: ['productDetailData']
+App\Domain\Model\User:
+  attributes:
+    id:
+      groups: ['userData']
+    name:
+      groups: ['userData']
+    email:
+      groups: ['userData']
+    phone:
+      groups: ['userData']
+    address:
+      groups: ['userData']
+App\Domain\Model\Order:
+  attributes:
+    id:
+      groups: [ 'orderData' ]
+    total:
+      groups: [ 'orderData' ]
+    discount:
+      groups: [ 'orderData' ]
+
