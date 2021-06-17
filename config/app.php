@@ -172,7 +172,6 @@ return [
         // App\Infrastructure\Framework\Providers\BroadcastServiceProvider::class,
         App\Infrastructure\Framework\Providers\EventServiceProvider::class,
         App\Infrastructure\Framework\Providers\RouteServiceProvider::class,
-
     ],
 
     /*

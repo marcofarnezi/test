@@ -9,7 +9,7 @@ class CampaignTypeEnum extends Enum
     public static function getAvailable(): array
     {
         return [
-            self::FIRST_PURCHASE
+            self::FIRST_PURCHASE,
         ];
     }
 

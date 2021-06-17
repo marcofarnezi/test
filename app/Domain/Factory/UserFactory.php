@@ -12,14 +12,14 @@ class UserFactory
         string $email,
         ?string $phone = null,
         ?string $address = null
-    ): User
-    {
+    ): User {
         $user = new User();
-        empty($userId)?:$user->setId($userId);
+        empty($userId) ?: $user->setId($userId);
         $user->setName($name);
         $user->setEmail($email);
         $user->setPhone($phone);
         $user->setAddress($address);
+
         return $user;
     }
 }

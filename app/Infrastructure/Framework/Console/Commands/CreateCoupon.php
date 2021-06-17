@@ -2,12 +2,12 @@
 
 namespace App\Infrastructure\Framework\Console\Commands;
 
-use App\Domain\Enum\CouponTypeEnum;
-use App\Domain\Repository\CampaignRepository;
-use App\Domain\Repository\CouponRepository;
-use App\Domain\Repository\UserRepository;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use App\Domain\Enum\CouponTypeEnum;
+use App\Domain\Repository\UserRepository;
+use App\Domain\Repository\CouponRepository;
+use App\Domain\Repository\CampaignRepository;
 use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class CreateCoupon extends Command
@@ -23,8 +23,7 @@ class CreateCoupon extends Command
         CampaignRepository $campaignRepository,
         UserRepository $userRepository,
         CouponRepository $couponRepository
-    )
-    {
+    ) {
         $this->campaignRepository = $campaignRepository;
         $this->userRepository = $userRepository;
         $this->couponRepository = $couponRepository;
@@ -37,6 +36,7 @@ class CreateCoupon extends Command
         if (empty($code)) {
             $this->line('Code problem: make:coupon {string:code} {float:discount} {string:type}
             {dateTime|null:start} {dateTime|null:end} {int|null:campaign} {int|null:user}');
+
             return CommandAlias::FAILURE;
         }
 
@@ -44,13 +44,15 @@ class CreateCoupon extends Command
         if (empty($code) || is_float($discount)) {
             $this->line('Discount problem: make:coupon {string:code} {float:discount} {string:type}
             {dateTime|null:start} {dateTime|null:end} {int|null:campaign} {int|null:user}');
+
             return CommandAlias::FAILURE;
         }
 
         $type = $this->argument('type');
         $availableTypes = CouponTypeEnum::getAvailable();
-        if (!in_array($type, $availableTypes)) {
+        if (! in_array($type, $availableTypes)) {
             $this->line('Type problem: types available - ', implode(', ', $availableTypes));
+
             return CommandAlias::FAILURE;
         }
 
@@ -61,14 +63,15 @@ class CreateCoupon extends Command
 
         $campaignId = $this->option('campaign');
         $campaign = $this->campaignRepository->find($campaignId);
-        if (!empty($campaignId) && empty($campaign)){
+        if (! empty($campaignId) && empty($campaign)) {
             $this->line('Campaign problem: Campaign does not exit.');
+
             return CommandAlias::FAILURE;
         }
 
         $userId = $this->option('user');
         $user = $this->userRepository->find($userId);
-        if (!empty($userId) && empty($user)) {
+        if (! empty($userId) && empty($user)) {
             $this->line('User problem: User does not exit.');
         }
 
@@ -82,6 +85,7 @@ class CreateCoupon extends Command
             $user
         );
         $this->line('Success: coupon@'.$coupon->getId());
+
         return CommandAlias::SUCCESS;
     }
 }

@@ -8,6 +8,7 @@ interface ProductRepository
 {
     /**
      * @param int[]|null $productsId
+     *
      * @return Product[]
      */
     public function getProducts(?array $productsId = null): array;

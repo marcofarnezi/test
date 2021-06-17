@@ -2,14 +2,14 @@
 
 namespace App\Infrastructure\Repository\Eloquent;
 
-use App\Domain\Database\Transaction;
-use App\Domain\Model\Campaign;
-use App\Domain\Model\Coupon;
+use Carbon\Carbon;
 use App\Domain\Model\User;
+use App\Domain\Model\Coupon;
+use App\Domain\Model\Campaign;
+use App\Domain\Database\Transaction;
 use App\Domain\Repository\CouponRepository;
 use App\Infrastructure\Framework\Models\Coupon as CouponEntity;
 use App\Infrastructure\Repository\Eloquent\Transformer\CouponTransformer;
-use Carbon\Carbon;
 
 class DBCouponRepository implements CouponRepository
 {
@@ -75,7 +75,7 @@ class DBCouponRepository implements CouponRepository
     {
         $couponEntity = CouponEntity::where('code', $code)
             ->where('start_at', '<=', Carbon::now())
-            ->where(function($entity) {
+            ->where(function ($entity) {
                 $entity->whereNull('end_at')
                     ->orWhere('end_at', '>=', Carbon::now());
             })
@@ -84,8 +84,7 @@ class DBCouponRepository implements CouponRepository
         if (empty($couponEntity)) {
             throw new \Exception('Coupon cannot be applied');
         }
-        if (!empty($couponEntity->user_id) && $userId !== $couponEntity->user_id)
-        {
+        if (! empty($couponEntity->user_id) && $userId !== $couponEntity->user_id) {
             return null;
         }
 
@@ -100,8 +99,7 @@ class DBCouponRepository implements CouponRepository
         ?Carbon $end = null,
         ?Campaign $campaign = null,
         ?User $user = null
-    ): Coupon
-    {
+    ): Coupon {
         $couponEntity = new CouponEntity();
         $couponEntity->code = $code;
         $couponEntity->discount = $discount;

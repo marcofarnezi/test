@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Infrastructure\Framework\Models\User;
 use Illuminate\Support\Str;
+use App\Infrastructure\Framework\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory

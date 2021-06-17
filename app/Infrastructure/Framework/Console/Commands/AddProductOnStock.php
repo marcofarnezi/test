@@ -2,10 +2,10 @@
 
 namespace App\Infrastructure\Framework\Console\Commands;
 
-use App\Domain\Database\Transaction;
-use App\Domain\Repository\ProductRepository;
-use App\Domain\Repository\StockRepository;
 use Illuminate\Console\Command;
+use App\Domain\Database\Transaction;
+use App\Domain\Repository\StockRepository;
+use App\Domain\Repository\ProductRepository;
 use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class AddProductOnStock extends Command
@@ -21,8 +21,7 @@ class AddProductOnStock extends Command
         Transaction $transaction,
         StockRepository $stockRepository,
         ProductRepository $productRepository
-    )
-    {
+    ) {
         $this->transaction = $transaction;
         $this->stockRepository = $stockRepository;
         $this->productRepository = $productRepository;
@@ -44,7 +43,7 @@ class AddProductOnStock extends Command
         $this->transaction->beginTransaction();
         try {
             $stocks = [];
-            for ($i = 0; $i < $amount; $i++) {
+            for ($i = 0; $i < $amount; ++$i) {
                 $stock = $this->stockRepository->new($product->getId(), $product->getPrice());
                 $stocks[] = $stock->getId();
             }
@@ -54,6 +53,7 @@ class AddProductOnStock extends Command
         } catch (\Exception $exception) {
             $this->transaction->rollBack();
         }
+
         return CommandAlias::SUCCESS;
     }
 }

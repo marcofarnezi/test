@@ -28,7 +28,7 @@ abstract class Enum
 
     private function guardValue(string $value): void
     {
-        if (!\in_array($staticvalue, static::getAvailable(), true)) {
+        if (! \in_array($staticvalue, static::getAvailable(), true)) {
             $this->throwException($value);
         }
     }

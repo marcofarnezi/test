@@ -18,5 +18,4 @@ class UserQuery
     {
         return $this->userRepository->get($userId);
     }
-
 }

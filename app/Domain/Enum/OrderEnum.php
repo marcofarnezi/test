@@ -15,7 +15,7 @@ class OrderEnum extends Enum
             self::CREATED,
             self::PROCESSING,
             self::PAID,
-            self::REFUSED
+            self::REFUSED,
         ];
     }
 

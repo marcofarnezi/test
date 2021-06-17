@@ -2,15 +2,16 @@
 
 namespace App\Domain\Repository;
 
-use App\Domain\Model\Campaign;
-use App\Domain\Model\Coupon;
-use App\Domain\Model\User;
 use Carbon\Carbon;
+use App\Domain\Model\User;
+use App\Domain\Model\Coupon;
+use App\Domain\Model\Campaign;
 
 interface CouponRepository
 {
     /**
      * @param int[]|null $couponsId
+     *
      * @return Coupon[]
      */
     public function getCoupons(?array $couponsId): array;

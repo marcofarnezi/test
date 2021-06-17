@@ -3,38 +3,37 @@
 namespace App\Infrastructure\Framework\Providers;
 
 use App\Domain\Database\Transaction;
-use App\Domain\Repository\CampaignRepository;
-use App\Domain\Repository\CouponRepository;
-use App\Domain\Repository\OrderItemRepository;
+use Illuminate\Support\ServiceProvider;
+use App\Domain\Repository\UserRepository;
 use App\Domain\Repository\OrderRepository;
+use App\Domain\Repository\StockRepository;
+use App\Domain\Repository\CouponRepository;
 use App\Domain\Repository\PaymentRepository;
 use App\Domain\Repository\ProductRepository;
-use App\Domain\Repository\StockRepository;
-use App\Domain\Repository\UserRepository;
-use App\Infrastructure\Framework\Database\EloquentTransaction;
-use App\Infrastructure\Repository\Eloquent\DBCampaignRepository;
-use App\Infrastructure\Repository\Eloquent\DBOrderItemRepository;
-use App\Infrastructure\Repository\Eloquent\DBOrderRepository;
-use App\Infrastructure\Repository\Eloquent\DBProductRepository;
-use App\Infrastructure\Repository\Eloquent\DBStockRepository;
-use App\Infrastructure\Repository\Eloquent\DBUserRepository;
-use App\Infrastructure\Repository\Eloquent\DBCouponRepository;
-use App\Infrastructure\Repository\PaymentRepository as PaymentRepositoryInfra;
-use App\Infrastructure\Serializer\OrderItemNormalize;
-use App\Infrastructure\Serializer\OrderNormalize;
-use App\Infrastructure\Serializer\ProductNormalize;
-use App\Infrastructure\Serializer\StockNormalize;
-use App\Infrastructure\Serializer\UserNormalize;
-use Illuminate\Support\ServiceProvider;
-use Symfony\Component\Serializer\Encoder\JsonEncode;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactoryInterface;
-use Symfony\Component\Serializer\Mapping\Loader\YamlFileLoader;
-use Symfony\Component\Serializer\Normalizer\DenormalizableInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Serializer;
+use App\Domain\Repository\CampaignRepository;
+use App\Domain\Repository\OrderItemRepository;
+use App\Infrastructure\Serializer\UserNormalize;
+use App\Infrastructure\Serializer\OrderNormalize;
+use App\Infrastructure\Serializer\StockNormalize;
+use App\Infrastructure\Serializer\ProductNormalize;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
+use App\Infrastructure\Serializer\OrderItemNormalize;
 use Symfony\Component\Serializer\SerializerInterface;
-
+use App\Infrastructure\Repository\Eloquent\DBUserRepository;
+use App\Infrastructure\Repository\Eloquent\DBOrderRepository;
+use App\Infrastructure\Repository\Eloquent\DBStockRepository;
+use App\Infrastructure\Framework\Database\EloquentTransaction;
+use App\Infrastructure\Repository\Eloquent\DBCouponRepository;
+use App\Infrastructure\Repository\Eloquent\DBProductRepository;
+use Symfony\Component\Serializer\Mapping\Loader\YamlFileLoader;
+use App\Infrastructure\Repository\Eloquent\DBCampaignRepository;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use App\Infrastructure\Repository\Eloquent\DBOrderItemRepository;
+use Symfony\Component\Serializer\Normalizer\DenormalizableInterface;
+use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
+use App\Infrastructure\Repository\PaymentRepository as PaymentRepositoryInfra;
+use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {

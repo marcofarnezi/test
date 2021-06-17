@@ -2,14 +2,15 @@
 
 namespace App\Domain\Repository;
 
-use App\Domain\Model\Coupon;
-use App\Domain\Model\Order;
 use App\Domain\Model\User;
+use App\Domain\Model\Order;
+use App\Domain\Model\Coupon;
 
 interface OrderRepository
 {
     /**
      * @param int[]|null $ordersId
+     *
      * @return Order[]
      */
     public function getOrders(?array $ordersId): array;

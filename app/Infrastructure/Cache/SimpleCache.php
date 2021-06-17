@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Infrastructure\Cache;
 
-use Illuminate\Support\Facades\Cache;
 use Psr\SimpleCache\CacheInterface;
+use Illuminate\Support\Facades\Cache;
 
 class SimpleCache implements CacheInterface
 {
@@ -48,7 +49,7 @@ class SimpleCache implements CacheInterface
     public function deleteMultiple($keys): bool
     {
         foreach ($keys as $key) {
-            if (!$this->delete($key)) {
+            if (! $this->delete($key)) {
                 return false;
             }
         }

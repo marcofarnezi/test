@@ -2,9 +2,9 @@
 
 namespace App\Infrastructure\Framework\Http\Controllers\Product;
 
+use Illuminate\Http\JsonResponse;
 use App\Application\Query\ProductQuery;
 use App\Infrastructure\Framework\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 
 class ProductsController extends Controller
 {

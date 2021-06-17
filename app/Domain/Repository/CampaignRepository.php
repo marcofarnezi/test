@@ -8,6 +8,7 @@ interface CampaignRepository
 {
     /**
      * @param int[]|null $campaignsId
+     *
      * @return Campaign[]
      */
     public function getCampaigns(?array $campaignsId): array;

@@ -2,11 +2,11 @@
 
 namespace App\Infrastructure\Repository\Eloquent;
 
-use App\Domain\Database\Transaction;
 use App\Domain\Model\Campaign;
+use App\Domain\Database\Transaction;
 use App\Domain\Repository\CampaignRepository;
-use App\Infrastructure\Repository\Eloquent\Transformer\CampaignTransformer;
 use App\Infrastructure\Framework\Models\Campaign as CampaignEntity;
+use App\Infrastructure\Repository\Eloquent\Transformer\CampaignTransformer;
 
 class DBCampaignRepository implements CampaignRepository
 {

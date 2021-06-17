@@ -8,6 +8,7 @@ interface StockRepository
 {
     /**
      * @param int[]|null $stocksId
+     *
      * @return Stock[]
      */
     public function getStocks(?array $stocksId): array;
@@ -19,8 +20,6 @@ interface StockRepository
     public function save(Stock $stock): Stock;
 
     /**
-     * @param int $productId
-     * @param int $amount
      * @return Stock[]
      */
     public function findProductStock(int $productId, int $amount): array;

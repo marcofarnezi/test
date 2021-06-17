@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Framework\Database;
 
-use App\Domain\Database\Transaction;
 use Illuminate\Support\Facades\DB;
+use App\Domain\Database\Transaction;
 
 class EloquentTransaction implements Transaction
 {

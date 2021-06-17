@@ -3,12 +3,11 @@
 namespace App\Application\Query;
 
 use App\Domain\Model\Product;
-use App\Domain\Model\Stock;
 use App\Domain\Repository\ProductRepository;
 use App\Infrastructure\Framework\Models\Stock as StockEntity;
-use App\Infrastructure\Repository\Eloquent\Transformer\ProductTransformer;
-use App\Infrastructure\Repository\Eloquent\Transformer\StockTransformer;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use App\Infrastructure\Repository\Eloquent\Transformer\StockTransformer;
+use App\Infrastructure\Repository\Eloquent\Transformer\ProductTransformer;
 
 class ProductQuery
 {
@@ -22,8 +21,7 @@ class ProductQuery
         StockTransformer $stockTransformer,
         ProductRepository $productRepository,
         NormalizerInterface $normalizer
-    )
-    {
+    ) {
         $this->productTransformer = $productTransformer;
         $this->stockTransformer = $stockTransformer;
         $this->productRepository = $productRepository;
@@ -42,7 +40,7 @@ class ProductQuery
     public function getProductStocks(Product $product, int $amount, ?int $orderId = null): array
     {
         $productEntity = $this->productTransformer->domainToEntity($product);
-        $stock = empty($orderId) ? $productEntity->stockAvailable->take($amount) :$productEntity->stockAvailable()
+        $stock = empty($orderId) ? $productEntity->stockAvailable->take($amount) : $productEntity->stockAvailable()
             ->leftJoin('order_items', 'order_items.stock_id', '=', 'stocks.id')
             ->whereRaw('stocks.id NOT IN(SELECT stock_id FROM order_items WHERE order_id = \''.$orderId.'\')')
             ->select('stocks.*')

@@ -2,12 +2,11 @@
 
 namespace App\Infrastructure\Repository\Eloquent;
 
-use App\Domain\Database\Transaction;
-use App\Domain\Enum\CouponTypeEnum;
-use App\Domain\Enum\OrderEnum;
-use App\Domain\Model\Coupon;
-use App\Domain\Model\Order;
 use App\Domain\Model\User;
+use App\Domain\Model\Order;
+use App\Domain\Model\Coupon;
+use App\Domain\Enum\OrderEnum;
+use App\Domain\Enum\CouponTypeEnum;
 use App\Domain\Repository\OrderRepository;
 use App\Infrastructure\Framework\Models\Order as OrderEntity;
 use App\Infrastructure\Repository\Eloquent\Transformer\OrderTransformer;
@@ -60,6 +59,7 @@ class DBOrderRepository implements OrderRepository
     {
         $orderEntity = $this->orderTransformer->domainToEntity($order);
         $orderEntity->save();
+
         return $this->orderTransformer->entityToDomain($orderEntity);
     }
 
@@ -71,7 +71,8 @@ class DBOrderRepository implements OrderRepository
         $orderEntity->status = OrderEnum::CREATED;
         $orderEntity->user_id = empty($user) ?: $user->getId();
         $orderEntity->save();
-        return  $this->orderTransformer->entityToDomain($orderEntity);
+
+        return $this->orderTransformer->entityToDomain($orderEntity);
     }
 
     public function applyCoupon(Order $order, Coupon $coupon): Order
@@ -79,13 +80,12 @@ class DBOrderRepository implements OrderRepository
         $total = $order->getTotal();
         $type = $coupon->getType();
         $discount = $coupon->getDiscountAmount();
-        if ($type === CouponTypeEnum::PERCENT) {
-            $discount =  round($total * $discount / 100);
+        if (CouponTypeEnum::PERCENT === $type) {
+            $discount = round($total * $discount / 100);
         }
         $order->setCoupon($coupon);
-        $order->setDiscount((int)$discount);
+        $order->setDiscount((int) $discount);
+
         return $this->save($order);
     }
 }
-
-

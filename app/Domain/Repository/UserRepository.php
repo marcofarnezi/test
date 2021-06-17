@@ -8,9 +8,10 @@ interface UserRepository
 {
     /**
      * @param int[]|null $usersId
+     *
      * @return User[]
      */
-    public function getUsers(?array $usersId):array;
+    public function getUsers(?array $usersId): array;
 
     public function get(int $id): User;
 

@@ -2,13 +2,13 @@
 
 namespace App\Infrastructure\Framework\Http\Controllers\Cart;
 
+use Illuminate\Http\Request;
+use App\Domain\Enum\OrderEnum;
+use Illuminate\Http\JsonResponse;
 use App\Application\Query\OrderQuery;
 use App\Application\Query\ProductQuery;
-use App\Domain\Enum\OrderEnum;
 use App\Domain\Repository\UserRepository;
 use App\Infrastructure\Framework\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class AddProductController extends Controller
@@ -23,8 +23,7 @@ class AddProductController extends Controller
         OrderQuery $orderQuery,
         ProductQuery $productQuery,
         UserRepository $userRepository
-    )
-    {
+    ) {
         $this->normalizer = $normalizer;
         $this->orderQuery = $orderQuery;
         $this->productQuery = $productQuery;
@@ -34,7 +33,7 @@ class AddProductController extends Controller
     public function __invoke(Request $request, ?int $orderId = null): JsonResponse
     {
         $order = $this->orderQuery->find($orderId);
-        if (!empty($orderId) && empty($order)) {
+        if (! empty($orderId) && empty($order)) {
             return new JsonResponse('Order not found', 404);
         }
         if (empty($orderId)) {
@@ -58,11 +57,12 @@ class AddProductController extends Controller
             $stockList
         );
         $order = $this->orderQuery->updateCoupon($order);
+
         return new JsonResponse(
             $this->normalizer->normalize(
                 [
                     'order' => $order,
-                    'items' => $this->orderQuery->getItems($order)
+                    'items' => $this->orderQuery->getItems($order),
                 ],
                 null,
                 ['groups' => ['orderData', 'productData']]

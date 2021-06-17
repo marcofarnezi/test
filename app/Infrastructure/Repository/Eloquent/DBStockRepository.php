@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Repository\Eloquent;
 
-use App\Domain\Database\Transaction;
 use App\Domain\Model\Stock;
+use App\Domain\Database\Transaction;
 use App\Domain\Repository\StockRepository;
 use App\Infrastructure\Framework\Models\Stock as StockEntity;
 use App\Infrastructure\Repository\Eloquent\Transformer\StockTransformer;

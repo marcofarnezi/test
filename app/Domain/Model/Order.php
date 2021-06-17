@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Domain\Model;
+
 class Order
 {
     private $id;
@@ -16,8 +18,7 @@ class Order
         ?int $discount = null,
         ?User $user = null,
         ?Coupon $coupon = null
-    )
-    {
+    ) {
         $this->id = $id;
         $this->total = $total;
         $this->status = $status;

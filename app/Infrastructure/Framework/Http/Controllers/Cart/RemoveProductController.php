@@ -2,10 +2,10 @@
 
 namespace App\Infrastructure\Framework\Http\Controllers\Cart;
 
-use App\Application\Query\OrderQuery;
 use App\Domain\Enum\OrderEnum;
-use App\Infrastructure\Framework\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
+use App\Application\Query\OrderQuery;
+use App\Infrastructure\Framework\Http\Controllers\Controller;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class RemoveProductController extends Controller
@@ -16,8 +16,7 @@ class RemoveProductController extends Controller
     public function __construct(
         OrderQuery $orderQuery,
         NormalizerInterface $normalizer
-    )
-    {
+    ) {
         $this->orderQuery = $orderQuery;
         $this->normalizer = $normalizer;
     }
@@ -32,11 +31,12 @@ class RemoveProductController extends Controller
             $order = $this->orderQuery->removeItem($orderId, $productId);
             $items = $this->orderQuery->getItems($order);
             $order = $this->orderQuery->updateCoupon($order);
+
             return new JsonResponse(
                 $this->normalizer->normalize(
                     [
                         'order' => $order,
-                        'items' => $items
+                        'items' => $items,
                     ],
                     null,
                     ['groups' => ['orderData', 'productData']]

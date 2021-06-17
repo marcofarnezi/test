@@ -2,9 +2,9 @@
 
 namespace App\Infrastructure\Framework\Http\Controllers\Product;
 
+use Illuminate\Http\JsonResponse;
 use App\Domain\Repository\ProductRepository;
 use App\Infrastructure\Framework\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class ProductDetailController extends Controller
@@ -15,8 +15,7 @@ class ProductDetailController extends Controller
     public function __construct(
         ProductRepository $productRepository,
         NormalizerInterface $normalizer
-    )
-    {
+    ) {
         $this->productRepository = $productRepository;
         $this->normalizer = $normalizer;
     }

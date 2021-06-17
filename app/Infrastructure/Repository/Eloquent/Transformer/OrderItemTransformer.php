@@ -15,8 +15,7 @@ class OrderItemTransformer
         OrderTransformer $orderTransformer,
         StockTransformer $stockTransformer,
         CouponTransformer $couponTransformer
-    )
-    {
+    ) {
         $this->orderTransformer = $orderTransformer;
         $this->stockTransformer = $stockTransformer;
         $this->couponTransformer = $couponTransformer;

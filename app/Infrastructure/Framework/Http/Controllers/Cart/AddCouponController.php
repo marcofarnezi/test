@@ -2,12 +2,12 @@
 
 namespace App\Infrastructure\Framework\Http\Controllers\Cart;
 
-use App\Application\Query\OrderQuery;
 use App\Domain\Enum\OrderEnum;
-use App\Domain\Repository\CouponRepository;
-use App\Domain\Repository\OrderRepository;
-use App\Infrastructure\Framework\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
+use App\Application\Query\OrderQuery;
+use App\Domain\Repository\OrderRepository;
+use App\Domain\Repository\CouponRepository;
+use App\Infrastructure\Framework\Http\Controllers\Controller;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class AddCouponController extends Controller
@@ -22,8 +22,7 @@ class AddCouponController extends Controller
         CouponRepository $couponRepository,
         OrderQuery $orderQuery,
         NormalizerInterface $normalizer
-    )
-    {
+    ) {
         $this->orderRepository = $orderRepository;
         $this->couponRepository = $couponRepository;
         $this->orderQuery = $orderQuery;
@@ -46,11 +45,12 @@ class AddCouponController extends Controller
 
             if ($coupon) {
                 $this->orderRepository->applyCoupon($order, $coupon);
+
                 return new JsonResponse(
                     $this->normalizer->normalize(
                         [
                             'order' => $order,
-                            'items' => $this->orderQuery->getItems($order)
+                            'items' => $this->orderQuery->getItems($order),
                         ],
                         null,
                         ['groups' => ['orderData', 'productData']]

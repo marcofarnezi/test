@@ -5,8 +5,8 @@ namespace App\Infrastructure\Repository\Eloquent;
 use App\Domain\Database\Transaction;
 use App\Domain\Model\User as UserDomain;
 use App\Domain\Repository\UserRepository;
-use App\Infrastructure\Repository\Eloquent\Transformer\UserTransformer;
 use App\Infrastructure\Framework\Models\User as UserEntity;
+use App\Infrastructure\Repository\Eloquent\Transformer\UserTransformer;
 
 class DBUserRepository implements UserRepository
 {
@@ -72,6 +72,7 @@ class DBUserRepository implements UserRepository
     {
         $userEntity = $this->userTransformer->domainToEntity($user);
         $userEntity->save();
+
         return $this->userTransformer->entityToDomain($userEntity->fresh());
     }
 }

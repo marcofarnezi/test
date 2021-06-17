@@ -2,9 +2,9 @@
 
 namespace App\Infrastructure\Framework\Http\Controllers\User;
 
+use Illuminate\Http\JsonResponse;
 use App\Application\Query\UserQuery;
 use App\Infrastructure\Framework\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class UserDetailController extends Controller
@@ -15,8 +15,7 @@ class UserDetailController extends Controller
     public function __construct(
         NormalizerInterface $normalizer,
         UserQuery $userQuery
-    )
-    {
+    ) {
         $this->normalizer = $normalizer;
         $this->userQuery = $userQuery;
     }

@@ -3,8 +3,8 @@
 namespace App\Infrastructure\Serializer;
 
 use App\Domain\Model\OrderItem;
-use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 
 class OrderItemNormalize extends GetSetMethodNormalizer implements ContextAwareNormalizerInterface
 {
@@ -18,4 +18,3 @@ class OrderItemNormalize extends GetSetMethodNormalizer implements ContextAwareN
         return (array) parent::normalize($object, $format, $context);
     }
 }
-

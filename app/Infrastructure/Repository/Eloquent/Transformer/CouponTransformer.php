@@ -2,9 +2,7 @@
 
 namespace App\Infrastructure\Repository\Eloquent\Transformer;
 
-use App\Domain\Model\Campaign;
 use App\Domain\Model\Coupon as CouponDomain;
-use App\Domain\Model\User;
 use App\Infrastructure\Framework\Models\Coupon as CouponEloquent;
 
 class CouponTransformer
@@ -15,8 +13,7 @@ class CouponTransformer
     public function __construct(
         CampaignTransformer $campaignTransformer,
         UserTransformer $userTransformer
-    )
-    {
+    ) {
         $this->campaignTransformer = $campaignTransformer;
         $this->userTransformer = $userTransformer;
     }

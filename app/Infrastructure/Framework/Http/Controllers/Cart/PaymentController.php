@@ -2,12 +2,12 @@
 
 namespace App\Infrastructure\Framework\Http\Controllers\Cart;
 
-use App\Application\Query\OrderQuery;
 use App\Domain\Enum\OrderEnum;
-use App\Domain\Repository\PaymentRepository;
-use App\Domain\Repository\UserRepository;
-use App\Infrastructure\Framework\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
+use App\Application\Query\OrderQuery;
+use App\Domain\Repository\UserRepository;
+use App\Domain\Repository\PaymentRepository;
+use App\Infrastructure\Framework\Http\Controllers\Controller;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class PaymentController extends Controller
@@ -22,8 +22,7 @@ class PaymentController extends Controller
         OrderQuery $orderQuery,
         UserRepository $userRepository,
         NormalizerInterface $normalizer
-    )
-    {
+    ) {
         $this->paymentRepository = $paymentRepository;
         $this->orderQuery = $orderQuery;
         $this->userRepository = $userRepository;
@@ -50,7 +49,7 @@ class PaymentController extends Controller
             $this->normalizer->normalize(
                 [
                     'order' => $order,
-                    'items' => $this->orderQuery->getItems($order)
+                    'items' => $this->orderQuery->getItems($order),
                 ],
                 null,
                 ['groups' => ['orderData', 'productData']]

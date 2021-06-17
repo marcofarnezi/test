@@ -2,10 +2,10 @@
 
 namespace App\Infrastructure\Repository\Eloquent;
 
-use App\Domain\Database\Transaction;
 use App\Domain\Model\Order;
-use App\Domain\Model\OrderItem;
 use App\Domain\Model\Stock;
+use App\Domain\Model\OrderItem;
+use App\Domain\Database\Transaction;
 use App\Domain\Repository\OrderItemRepository;
 use App\Infrastructure\Framework\Models\OrderItem as OrderItemEntity;
 use App\Infrastructure\Repository\Eloquent\Transformer\OrderItemTransformer;
@@ -18,8 +18,7 @@ class DBOrderItemRepository implements OrderItemRepository
     public function __construct(
         Transaction $transaction,
         OrderItemTransformer $orderItemTransformer
-    )
-    {
+    ) {
         $this->orderItemTransformer = $orderItemTransformer;
         $this->transaction = $transaction;
     }
@@ -79,7 +78,8 @@ class DBOrderItemRepository implements OrderItemRepository
         $orderItem->order_id = $order->getId();
         $orderItem->stock_id = $stock->getId();
         $orderItem->save();
-        return  $this->orderItemTransformer->entityToDomain($orderItem);
+
+        return $this->orderItemTransformer->entityToDomain($orderItem);
     }
 
     public function remove(OrderItem $orderItem): bool

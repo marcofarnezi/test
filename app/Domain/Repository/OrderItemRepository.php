@@ -3,13 +3,14 @@
 namespace App\Domain\Repository;
 
 use App\Domain\Model\Order;
-use App\Domain\Model\OrderItem;
 use App\Domain\Model\Stock;
+use App\Domain\Model\OrderItem;
 
 interface OrderItemRepository
 {
     /**
      * @param int[]|null $orderItemsId
+     *
      * @return OrderItem[]
      */
     public function getOrderItems(?array $orderItemsId): array;

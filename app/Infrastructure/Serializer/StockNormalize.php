@@ -3,8 +3,8 @@
 namespace App\Infrastructure\Serializer;
 
 use App\Domain\Model\Stock;
-use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 
 class StockNormalize extends GetSetMethodNormalizer implements ContextAwareNormalizerInterface
 {

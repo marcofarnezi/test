@@ -18,6 +18,7 @@ class ProductTransformer
 
         $productDomain->setCreatedAt($entity->created_at);
         $productDomain->setEditedAt($entity->edited_at);
+
         return $productDomain;
     }
 

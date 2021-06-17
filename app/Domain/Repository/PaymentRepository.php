@@ -2,8 +2,8 @@
 
 namespace App\Domain\Repository;
 
-use App\Domain\Model\Order;
 use App\Domain\Model\User;
+use App\Domain\Model\Order;
 
 interface PaymentRepository
 {

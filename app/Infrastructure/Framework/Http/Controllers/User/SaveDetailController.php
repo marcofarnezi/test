@@ -2,12 +2,11 @@
 
 namespace App\Infrastructure\Framework\Http\Controllers\User;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Domain\Factory\UserFactory;
 use App\Domain\Repository\UserRepository;
 use App\Infrastructure\Framework\Http\Controllers\Controller;
-use App\Infrastructure\Framework\Http\Requests\UserRequest;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class SaveDetailController extends Controller
@@ -20,15 +19,14 @@ class SaveDetailController extends Controller
         UserRepository $userRepository,
         UserFactory $userFactory,
         NormalizerInterface $normalizer
-    )
-    {
+    ) {
         $this->userFactory = $userFactory;
         $this->userRepository = $userRepository;
         $this->normalizer = $normalizer;
     }
 
     public function __invoke(Request $request, ?int $userId = null): JsonResponse
-    {;
+    {
         $user = $this->userFactory->getUser(
             $userId,
             $request->name,
@@ -38,15 +36,14 @@ class SaveDetailController extends Controller
         );
 
         try {
-
             return new JsonResponse(
                 $this->normalizer->normalize(
                     $this->userRepository->save($user),
                     null,
                     ['groups' => ['userData']]
                 ),
-                    200
-                );
+                200
+            );
         } catch (\Exception $exception) {
             return new JsonResponse($exception->getMessage(), 404);
         }

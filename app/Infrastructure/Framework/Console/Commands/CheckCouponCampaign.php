@@ -2,13 +2,13 @@
 
 namespace App\Infrastructure\Framework\Console\Commands;
 
-use App\Application\Query\CampaignQuery;
-use App\Application\Query\OrderQuery;
-use App\Domain\Enum\CouponTypeEnum;
-use App\Domain\Repository\CouponRepository;
-use App\Domain\Repository\UserRepository;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use App\Domain\Enum\CouponTypeEnum;
+use App\Application\Query\OrderQuery;
+use App\Application\Query\CampaignQuery;
+use App\Domain\Repository\UserRepository;
+use App\Domain\Repository\CouponRepository;
 use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class CheckCouponCampaign extends Command
@@ -26,8 +26,7 @@ class CheckCouponCampaign extends Command
         CampaignQuery $campaignQuery,
         CouponRepository $couponRepository,
         UserRepository $userRepository
-    )
-    {
+    ) {
         $this->orderQuery = $orderQuery;
         $this->campaignQuery = $campaignQuery;
         $this->couponRepository = $couponRepository;
@@ -50,9 +49,9 @@ class CheckCouponCampaign extends Command
                     $this->userRepository->get($userId)
                 );
             }
-            $this->line('Success: users@'. implode(', ', $users));
-
+            $this->line('Success: users@'.implode(', ', $users));
         }
+
         return CommandAlias::SUCCESS;
     }
 }

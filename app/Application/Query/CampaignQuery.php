@@ -2,10 +2,10 @@
 
 namespace App\Application\Query;
 
+use Carbon\Carbon;
 use App\Domain\Enum\CampaignTypeEnum;
 use App\Infrastructure\Framework\Models\Campaign as CampaignEntity;
 use App\Infrastructure\Repository\Eloquent\Transformer\CampaignTransformer;
-use Carbon\Carbon;
 
 class CampaignQuery
 {

@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Domain\Model;
+
 class Product
 {
     private $id;
@@ -14,8 +16,7 @@ class Product
         string $title,
         int $price,
         ?string $description = null
-    )
-    {
+    ) {
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;

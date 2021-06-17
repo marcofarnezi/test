@@ -13,8 +13,7 @@ class OrderTransformer
     public function __construct(
         UserTransformer $userTransformer,
         CouponTransformer $couponTransformer
-    )
-    {
+    ) {
         $this->userTransformer = $userTransformer;
         $this->couponTransformer = $couponTransformer;
     }
@@ -44,6 +43,7 @@ class OrderTransformer
         $entity->status = $domain->getStatus();
         $entity->user_id = empty($user) ? null : $user->getId();
         $entity->coupon_id = empty($coupon) ? null : $coupon->getId();
+
         return $entity;
     }
 }

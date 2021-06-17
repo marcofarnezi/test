@@ -3,8 +3,8 @@
 namespace App\Infrastructure\Serializer;
 
 use App\Domain\Model\User;
-use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 
 class UserNormalize extends GetSetMethodNormalizer implements ContextAwareNormalizerInterface
 {

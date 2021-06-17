@@ -3,10 +3,10 @@
 namespace App\Infrastructure\Repository\Eloquent;
 
 use App\Domain\Database\Transaction;
-use App\Domain\Model\Product as ProductDomain;
 use App\Domain\Repository\ProductRepository;
-use App\Infrastructure\Repository\Eloquent\Transformer\ProductTransformer;
+use App\Domain\Model\Product as ProductDomain;
 use App\Infrastructure\Framework\Models\Product as ProductEntity;
+use App\Infrastructure\Repository\Eloquent\Transformer\ProductTransformer;
 
 class DBProductRepository implements ProductRepository
 {
